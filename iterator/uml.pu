@@ -1,0 +1,63 @@
+@startuml iterator
+interface Aggregate {
+  --
+  iterator
+}
+
+class Bookshelf {
+  books
+  last
+  --
+  getBookAt
+  appendBook
+  getLength
+  iterator
+}
+
+class Book {
+  id
+  name
+  --
+  getName
+}
+
+interface Iterator {
+  --
+  hasNext
+  next
+}
+
+class BookshelfIterator {
+  bookshelf
+  index
+  --
+  hasNext
+  next
+}
+
+Aggregate <|.. Bookshelf
+Bookshelf o-- Book
+Aggregate -> Iterator:Create
+Iterator <|.. BookshelfIterator
+Bookshelf -o BookshelfIterator
+
+note right of Iterator
+  要素を順番にスキャンしていくインターフェース。
+end note
+
+note right of BookshelfIterator
+  <b>ConcreteIterator</b>
+  Iteratorインターフェースを実装
+end note
+
+note left of Aggregate
+  Iteratorを作り出すインターフェース
+  数え上げを行うものの「集合体」を表す。
+end note
+
+note left of Bookshelf
+  <b>ConcreteAggregate</b>
+  Aggregateインターフェースを実装
+  具体的なIterator(ConcreteIterator)を作り出す
+end note
+@enduml
