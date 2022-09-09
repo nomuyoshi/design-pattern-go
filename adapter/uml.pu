@@ -1,0 +1,57 @@
+@startuml extends
+circle Client
+interface Target {
+  --
+  method1
+  method2
+}
+
+class Adapter {
+  --
+  method1
+  method2
+}
+
+class Adaptee {
+  --
+  methodA
+  methodB
+  methodC
+}
+
+Client --> Target: Use(使用)
+Target <|.Adapter: implements
+Adapter -|> Adaptee: extends
+
+
+@enduml
+
+@startuml transfer
+
+circle Client
+
+class Target {
+  --
+  method1
+  method2
+}
+
+class Adapter {
+  adaptee
+  --
+  method1
+  method2
+}
+
+class Adaptee {
+  --
+  methodA
+  methodB
+  methodC
+}
+
+Client --> Target: Use(使用)
+Target <|-Adapter: extends
+Adapter o- Adaptee: has 集約
+
+@enduml
