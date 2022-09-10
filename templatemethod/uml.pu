@@ -1,0 +1,27 @@
+@startuml templatemethod
+class AbstractClass {
+  --
+  method1
+  method2
+  method3
+  templateMethod
+}
+
+class ConcreteClassA {
+  --
+  method1
+  method2
+  method3
+}
+
+class ConcreteClassB {
+  --
+  method1
+  method2
+  method3
+}
+
+
+AbstractClass <|-- ConcreteClassA
+AbstractClass <|-- ConcreteClassB
+@enduml
